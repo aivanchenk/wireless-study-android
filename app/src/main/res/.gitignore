@@ -1,0 +1,45 @@
+# --- Build system
+.gradle/
+build/
+!**/src/**/build/
+
+# --- Local machine config
+local.properties
+
+# --- Android build artifacts
+*.apk
+*.aab
+*.ap_
+output-metadata.json
+.cxx/
+.externalNativeBuild/
+captures/
+
+# --- Profiling / logs
+*.hprof
+*.log
+
+# --- IntelliJ / Android Studio
+*.iml
+# Prefer selective ignore (recommended by JetBrains/GitHub templates):
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/contentModel.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+# If you’d rather ignore the whole folder, use:
+# .idea/
+
+# --- Keystores (don’t commit signing keys)
+*.jks
+*.keystore
+
+# --- Google services config (only commit if your team intends to share it)
+google-services.json
+
+# --- OS cruft
+.DS_Store
+Thumbs.db
