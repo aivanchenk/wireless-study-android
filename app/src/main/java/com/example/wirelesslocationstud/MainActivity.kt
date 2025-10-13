@@ -8,6 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.wirelesslocationstud.databinding.ActivityMainBinding
+import com.example.wirelesslocationstud.data.remote.WirelessApiIntegrationTest
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,5 +32,12 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        // Run API Integration Test - Check Logcat with tag "WirelessApiTest" to see results
+        // Make sure your service is running on http://localhost:9000 before launching the app!
+        WirelessApiIntegrationTest.runTest(this)
+
+        // Uncomment below to also run the basic database test:
+        // WirelessDatabaseTest.runTest(this)
     }
 }
