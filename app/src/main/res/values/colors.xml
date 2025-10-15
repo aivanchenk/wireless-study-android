@@ -13,4 +13,7 @@
     <color name="tab_color">#EAF9E7</color>
     <color name="border_color">#4CA771</color>
     <color name="text_color">#013237</color>
+
+    <!-- Custom colors for menu fragment -->
+    <color name="icon_color">#4CA771</color>
 </resources>
