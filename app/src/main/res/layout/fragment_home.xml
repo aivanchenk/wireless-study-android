@@ -11,9 +11,9 @@
         android:id="@+id/segmented_button_group"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16sp"
-        android:layout_marginTop="16sp"
-        android:layout_marginEnd="16sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         app:singleSelection="true"
         app:selectionRequired="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,16 +45,23 @@
             style="@style/Widget.Material3.Button.OutlinedButton" />
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
-    <!-- Canvas View Container -->
-    <com.example.wirelesslocationstud.ui.home.SignalMapCanvasView
-        android:id="@+id/canvas_view"
+    <!-- Scrollable Canvas Container for Portrait -->
+    <ScrollView
+        android:id="@+id/scroll_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8sp"
+        android:layout_marginTop="4dp"
+        android:fillViewport="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/segmented_button_group" />
+        app:layout_constraintTop_toBottomOf="@id/segmented_button_group">
+
+        <com.example.wirelesslocationstud.ui.home.SignalMapCanvasView
+            android:id="@+id/canvas_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
 
     <!-- Image View Container (for future use) -->
     <TextView
