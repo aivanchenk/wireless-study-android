@@ -65,4 +65,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.work.testing)
     androidTestImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.androidx.fragment.testing)
+    debugImplementation(libs.androidx.fragment.testing)
 }
