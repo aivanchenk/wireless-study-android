@@ -16,4 +16,10 @@
 
     <!-- Custom colors for menu fragment -->
     <color name="icon_color">#4CA771</color>
+
+    <!-- Canvas grid colors -->
+    <color name="cell_with_strength">#C0E6BA</color>
+    <color name="cell_without_strength">#F7CBCA</color>
+    <color name="grid_line_color">#CCCCCC</color>
+    <color name="axis_color">#000000</color>
 </resources>

@@ -11,9 +11,9 @@
         android:id="@+id/segmented_button_group"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="16sp"
         app:singleSelection="true"
         app:selectionRequired="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:text="Canvas"
             android:textColor="@color/text_color"
-            android:textSize="24sp"
+            android:textSize="16sp"
             app:strokeColor="@color/border_color"
             app:backgroundTint="@color/tab_color"
             style="@style/Widget.Material3.Button.OutlinedButton" />
@@ -37,14 +37,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Map Image"
+            android:text="Image"
             android:textColor="@color/text_color"
-            android:textSize="24sp"
+            android:textSize="16sp"
             app:strokeColor="@color/border_color"
             app:backgroundTint="@color/tab_color"
             style="@style/Widget.Material3.Button.OutlinedButton" />
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
+    <!-- Canvas View Container -->
+    <com.example.wirelesslocationstud.ui.home.SignalMapCanvasView
+        android:id="@+id/canvas_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/segmented_button_group" />
+
+    <!-- Image View Container (for future use) -->
     <TextView
         android:id="@+id/text_content"
         android:layout_width="0dp"
@@ -58,6 +70,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/text_color"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

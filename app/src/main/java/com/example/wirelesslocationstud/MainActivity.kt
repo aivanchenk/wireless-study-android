@@ -6,7 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.wirelesslocationstud.databinding.ActivityMainBinding
-import com.example.wirelesslocationstud.data.remote.WirelessApiIntegrationTest
+import com.example.wirelesslocationstud.data.local.database.WirelessDatabase
+import com.example.wirelesslocationstud.data.worker.MapSyncScheduler
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,16 +19,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Initialize database early
+        WirelessDatabase.getDatabase(applicationContext)
+
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
 
-        // Run API Integration Test - Check Logcat with tag "WirelessApiTest" to see results
-        // Make sure your service is running on http://localhost:9000 before launching the app!
-        WirelessApiIntegrationTest.runTest(this)
-
-        // Uncomment below to also run the basic database test:
-        // WirelessDatabaseTest.runTest(this)
+        // Schedule background sync to fetch map data from API on first launch
+        // This will populate the Room database cache with data from http://localhost:9000
+        MapSyncScheduler.scheduleFirstTimeSync(this)
     }
 }

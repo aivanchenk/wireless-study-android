@@ -20,7 +20,8 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application))
+            .get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -31,15 +32,24 @@ class HomeFragment : Fragment() {
         binding.segmentedButtonGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
             if (isChecked) {
                 when (checkedId) {
-                    R.id.button_canvas -> homeViewModel.selectTab(HomeViewModel.TabType.CANVAS)
-                    R.id.button_image -> homeViewModel.selectTab(HomeViewModel.TabType.IMAGE)
+                    R.id.button_canvas -> {
+                        homeViewModel.selectTab(HomeViewModel.TabType.CANVAS)
+                        binding.canvasView.visibility = View.VISIBLE
+                        binding.textContent.visibility = View.GONE
+                    }
+                    R.id.button_image -> {
+                        homeViewModel.selectTab(HomeViewModel.TabType.IMAGE)
+                        binding.canvasView.visibility = View.GONE
+                        binding.textContent.visibility = View.VISIBLE
+                        binding.textContent.text = "This is Image view - you can see the image content here"
+                    }
                 }
             }
         }
 
-        // Observe content text changes
-        homeViewModel.contentText.observe(viewLifecycleOwner) {
-            binding.textContent.text = it
+        // Observe map data and update canvas
+        homeViewModel.mapCells.observe(viewLifecycleOwner) { cells ->
+            binding.canvasView.setMapData(cells)
         }
 
         return root

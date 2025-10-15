@@ -1,6 +1,8 @@
 package com.example.wirelesslocationstud.data.local.database
 
+import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.wirelesslocationstud.data.local.dao.AccessPointReadingDao
 import com.example.wirelesslocationstud.data.local.dao.MapCellDao
@@ -29,5 +31,20 @@ abstract class WirelessDatabase : RoomDatabase() {
 
     companion object {
         const val DATABASE_NAME: String = "wireless_map.db"
+
+        @Volatile
+        private var INSTANCE: WirelessDatabase? = null
+
+        fun getDatabase(context: Context): WirelessDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    WirelessDatabase::class.java,
+                    DATABASE_NAME
+                ).build()
+                INSTANCE = instance
+                instance
+            }
+        }
     }
 }
