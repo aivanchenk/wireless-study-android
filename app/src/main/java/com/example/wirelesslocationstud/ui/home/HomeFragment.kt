@@ -35,13 +35,14 @@ class HomeFragment : Fragment() {
                     R.id.button_canvas -> {
                         homeViewModel.selectTab(HomeViewModel.TabType.CANVAS)
                         binding.scrollContainer.visibility = View.VISIBLE
+                        binding.roomScrollContainer.visibility = View.GONE
                         binding.textContent.visibility = View.GONE
                     }
                     R.id.button_image -> {
                         homeViewModel.selectTab(HomeViewModel.TabType.IMAGE)
                         binding.scrollContainer.visibility = View.GONE
-                        binding.textContent.visibility = View.VISIBLE
-                        binding.textContent.text = "This is Image view - you can see the image content here"
+                        binding.roomScrollContainer.visibility = View.VISIBLE
+                        binding.textContent.visibility = View.GONE
                     }
                 }
             }
