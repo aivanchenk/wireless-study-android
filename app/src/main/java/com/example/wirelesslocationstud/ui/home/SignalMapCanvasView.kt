@@ -27,6 +27,7 @@ class SignalMapCanvasView @JvmOverloads constructor(
     private var maxX: Int = 0
     private var minY: Int = 0
     private var maxY: Int = 0
+    private var targetPoint: Pair<Int, Int>? = null
 
     private val cellWithStrengthPaint = Paint().apply {
         color = ContextCompat.getColor(context, R.color.cell_with_strength)
@@ -36,6 +37,17 @@ class SignalMapCanvasView @JvmOverloads constructor(
     private val cellWithoutStrengthPaint = Paint().apply {
         color = ContextCompat.getColor(context, R.color.cell_without_strength)
         style = Paint.Style.FILL
+    }
+
+    private val targetCellPaint = Paint().apply {
+        color = 0xFFFFD700.toInt() // Yellow/Gold color
+        style = Paint.Style.FILL
+    }
+
+    private val targetCellBorderPaint = Paint().apply {
+        color = 0xFFFF8C00.toInt() // Orange color
+        style = Paint.Style.STROKE
+        strokeWidth = 4f
     }
 
     private val gridLinePaint = Paint().apply {
@@ -97,6 +109,15 @@ class SignalMapCanvasView @JvmOverloads constructor(
         // Request layout to recalculate dimensions
         requestLayout()
         invalidate()
+    }
+
+    /**
+     * Set the target point to highlight (point with smallest Euclidean distance)
+     */
+    fun setTargetPoint(point: Pair<Int, Int>?) {
+        targetPoint = point
+        invalidate()
+        Log.d(TAG, "Target point updated: $point")
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -321,6 +342,37 @@ class SignalMapCanvasView @JvmOverloads constructor(
             canvas.rotate(-90f, 10f, height / 2f)
             canvas.drawText("X", 10f, height / 2f, axisPaint)
             canvas.restore()
+        }
+
+        // Draw target cell if specified (overlay on top of regular cells)
+        targetPoint?.let { (targetX, targetY) ->
+            if (portrait) {
+                // Portrait mode: normal X and Y orientation
+                val left = startX + (targetX - minX) * cellWidth
+                val top = startY + (maxY - targetY) * cellHeight
+                val right = left + cellWidth
+                val bottom = top + cellHeight
+
+                // Draw target cell with yellow fill
+                canvas.drawRect(left, top, right, bottom, targetCellPaint)
+                // Draw orange border
+                canvas.drawRect(left, top, right, bottom, targetCellBorderPaint)
+
+                Log.d(TAG, "Drew target point at ($targetX, $targetY) - Portrait")
+            } else {
+                // Landscape mode: Y is horizontal, X is vertical
+                val left = startX + (targetY - minY) * cellWidth
+                val top = startY + (maxX - targetX) * cellHeight
+                val right = left + cellWidth
+                val bottom = top + cellHeight
+
+                // Draw target cell with yellow fill
+                canvas.drawRect(left, top, right, bottom, targetCellPaint)
+                // Draw orange border
+                canvas.drawRect(left, top, right, bottom, targetCellBorderPaint)
+
+                Log.d(TAG, "Drew target point at ($targetX, $targetY) - Landscape")
+            }
         }
 
         Log.d(TAG, "Drew grid: $cellsWithStrength cells with strength (green), $cellsWithoutStrength cells without strength (red)")

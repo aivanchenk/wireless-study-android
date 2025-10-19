@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import com.example.wirelesslocationstud.R
 import com.example.wirelesslocationstud.databinding.FragmentHomeBinding
 
@@ -13,16 +13,15 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var homeViewModel: HomeViewModel
+
+    // Use activityViewModels() to share the ViewModel with MainActivity
+    private val homeViewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application))
-            .get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -50,7 +49,14 @@ class HomeFragment : Fragment() {
 
         // Observe map data and update canvas
         homeViewModel.mapCells.observe(viewLifecycleOwner) { cells ->
+            android.util.Log.d("HomeFragment", "Map cells updated: ${cells.size} cells")
             binding.canvasView.setMapData(cells)
+        }
+
+        // Observe target point and update canvas
+        homeViewModel.targetPoint.observe(viewLifecycleOwner) { targetPoint ->
+            android.util.Log.d("HomeFragment", "Target point updated in fragment: $targetPoint")
+            binding.canvasView.setTargetPoint(targetPoint)
         }
 
         return root
