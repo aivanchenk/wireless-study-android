@@ -17,18 +17,52 @@
         android:layout_marginBottom="16dp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/rss_input_layout"
+        android:id="@+id/rss_input_layout_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="RSS Vector"
+        android:hint="RSS Value 1"
+        app:boxStrokeColor="@color/border_color"
+        app:hintTextColor="@color/border_color"
+        android:layout_marginBottom="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/rss_input_edittext_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textColor="@color/text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/rss_input_layout_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="RSS Value 2"
+        app:boxStrokeColor="@color/border_color"
+        app:hintTextColor="@color/border_color"
+        android:layout_marginBottom="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/rss_input_edittext_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textColor="@color/text_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/rss_input_layout_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="RSS Value 3"
         app:boxStrokeColor="@color/border_color"
         app:hintTextColor="@color/border_color">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/rss_input_edittext"
+            android:id="@+id/rss_input_edittext_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="number"
             android:textColor="@color/text_color" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,6 +79,7 @@
             android:layout_height="wrap_content"
             android:text="Cancel"
             android:textColor="@color/text_color"
+            android:textSize="16sp"
             app:strokeColor="@color/border_color"
             app:backgroundTint="@android:color/transparent"
             style="@style/Widget.Material3.Button.OutlinedButton"
@@ -56,6 +91,7 @@
             android:layout_height="wrap_content"
             android:text="Submit"
             android:textColor="@color/text_color"
+            android:textSize="16sp"
             app:backgroundTint="@color/tab_color"
             app:strokeColor="@color/border_color"
             style="@style/Widget.Material3.Button.OutlinedButton" />

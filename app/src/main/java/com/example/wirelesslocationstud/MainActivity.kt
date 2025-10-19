@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             val dialog = RssInputDialogFragment()
             dialog.setOnRssSubmittedListener { rssVector ->
                 // Handle the RSS vector submission here
+                // rssVector is a List<Int> with 3 positive integer values
                 // You can pass it to the HomeFragment or ViewModel
                 // For now, we'll just log it or show a toast
                 // TODO: Implement RSS vector processing
