@@ -8,6 +8,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.wirelesslocationstud.databinding.ActivityMainBinding
 import com.example.wirelesslocationstud.data.local.database.WirelessDatabase
 import com.example.wirelesslocationstud.data.worker.MapSyncScheduler
+import com.example.wirelesslocationstud.ui.home.RssInputDialogFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,5 +31,17 @@ class MainActivity : AppCompatActivity() {
         // Schedule background sync to fetch map data from API on first launch
         // This will populate the Room database cache with data from http://localhost:9000
         MapSyncScheduler.scheduleFirstTimeSync(this)
+
+        // Set up FAB click listener to open RSS input dialog
+        binding.fabAdd.setOnClickListener {
+            val dialog = RssInputDialogFragment()
+            dialog.setOnRssSubmittedListener { rssVector ->
+                // Handle the RSS vector submission here
+                // You can pass it to the HomeFragment or ViewModel
+                // For now, we'll just log it or show a toast
+                // TODO: Implement RSS vector processing
+            }
+            dialog.show(supportFragmentManager, RssInputDialogFragment.TAG)
+        }
     }
 }

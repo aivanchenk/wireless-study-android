@@ -30,4 +30,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
 
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="Add"
+        android:elevation="6dp"
+        app:srcCompat="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/tab_color"
+        app:tint="@color/border_color"
+        app:borderWidth="2dp"
+        app:rippleColor="@color/border_color"
+        app:layout_constraintBottom_toTopOf="@id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
