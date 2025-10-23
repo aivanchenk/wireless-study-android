@@ -37,6 +37,13 @@ class CoordinateTableAdapter(
             binding.textStrength2.text = cell.strength2.toString()
             binding.textStrength3.text = cell.strength3.toString()
 
+            // Show checkmark icon only for custom/form entries
+            binding.iconSource.visibility = if (cell.isCustom) {
+                android.view.View.VISIBLE
+            } else {
+                android.view.View.GONE
+            }
+
             binding.buttonEdit.setOnClickListener {
                 onEditClick(cell)
             }

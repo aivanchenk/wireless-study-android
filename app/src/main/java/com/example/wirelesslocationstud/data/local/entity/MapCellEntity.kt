@@ -12,5 +12,6 @@ data class MapCellEntity(
     val strength1: Int?,
     val strength2: Int?,
     val strength3: Int?,
-    val lastUpdatedEpochMillis: Long = 0L
+    val lastUpdatedEpochMillis: Long = 0L,
+    val isCustom: Boolean = false
 )

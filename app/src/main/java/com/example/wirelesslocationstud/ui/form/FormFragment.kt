@@ -98,18 +98,22 @@ class FormFragment : Fragment() {
         try {
             val x = xText.toInt()
             val y = yText.toInt()
+            val rss1 = rss1Text.toInt()
+            val rss2 = rss2Text.toInt()
+            val rss3 = rss3Text.toInt()
 
             when (val result = viewModel.validateCoordinates(x, y)) {
                 is FormViewModel.ValidationResult.Success -> {
-                    // Validation successful - proceed with submission
+                    // Validation successful - save to database
+                    viewModel.submitMeasurement(x, y, rss1, rss2, rss3)
+
                     Toast.makeText(
                         requireContext(),
-                        "Form submitted successfully! X=$x, Y=$y",
+                        "Measurement saved! X=$x, Y=$y will appear in Dashboard and Canvas",
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    // TODO: Add actual submission logic here
-                    // For now, just clear the form
+                    // Clear the form
                     clearForm()
                 }
                 is FormViewModel.ValidationResult.Error -> {
@@ -128,7 +132,7 @@ class FormFragment : Fragment() {
             // Invalid number format
             Toast.makeText(
                 requireContext(),
-                "Please enter valid integer values for coordinates",
+                "Please enter valid integer values for coordinates and RSS values",
                 Toast.LENGTH_SHORT
             ).show()
         }

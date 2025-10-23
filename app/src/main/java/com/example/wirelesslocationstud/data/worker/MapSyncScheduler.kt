@@ -28,5 +28,27 @@ object MapSyncScheduler {
             syncWorkRequest
         )
     }
+
+    /**
+     * Force refresh map data from API
+     * This will cancel any existing work and start a new sync
+     */
+    fun forceRefresh(context: Context) {
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
+
+        val syncWorkRequest = OneTimeWorkRequestBuilder<MapSyncWorker>()
+            .setConstraints(constraints)
+            .addTag("force_refresh")
+            .build()
+
+        // Use REPLACE policy to force a new sync even if one is already queued
+        WorkManager.getInstance(context).enqueueUniqueWork(
+            "${MapSyncWorker.WORK_NAME}_force",
+            ExistingWorkPolicy.REPLACE,
+            syncWorkRequest
+        )
+    }
 }
 

@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.wirelesslocationstud.R
 import com.example.wirelesslocationstud.databinding.FragmentHomeBinding
+import com.example.wirelesslocationstud.data.worker.MapSyncScheduler
+import com.google.android.material.snackbar.Snackbar
 
 class HomeFragment : Fragment() {
 
@@ -50,7 +52,22 @@ class HomeFragment : Fragment() {
         // Observe map data and update canvas
         homeViewModel.mapCells.observe(viewLifecycleOwner) { cells ->
             android.util.Log.d("HomeFragment", "Map cells updated: ${cells.size} cells")
+
+            // Update both canvas views
             binding.canvasView.setMapData(cells)
+
+            android.util.Log.d("HomeFragment", "Canvas views updated with ${cells.size} cells")
+
+            // If no data, show a helpful message
+            if (cells.isEmpty()) {
+                Snackbar.make(binding.root, "No map data available. Tap Refresh to load data.", Snackbar.LENGTH_LONG)
+                    .setAction("Refresh") {
+                        android.util.Log.d("HomeFragment", "Manual refresh triggered")
+                        MapSyncScheduler.forceRefresh(requireContext())
+                        Snackbar.make(binding.root, "Refreshing map data from API...", Snackbar.LENGTH_SHORT).show()
+                    }
+                    .show()
+            }
         }
 
         // Observe target point and update canvas

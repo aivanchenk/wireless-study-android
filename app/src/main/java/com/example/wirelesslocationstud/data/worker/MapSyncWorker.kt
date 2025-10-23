@@ -36,14 +36,17 @@ class MapSyncWorker(
                 mapMetadataDao = database.mapMetadataDao()
             )
 
-            // Check if data is already cached
-            if (repository.isMapCached()) {
+            // Check if this is a forced refresh
+            val isForceRefresh = tags.contains("force_refresh")
+
+            // Check if data is already cached (skip this check for force refresh)
+            if (!isForceRefresh && repository.isMapCached()) {
                 Log.d(TAG, "Map data already cached, skipping sync")
                 return Result.success()
             }
 
             // Fetch and cache the map
-            Log.d(TAG, "Fetching map data from API...")
+            Log.d(TAG, "Fetching map data from API... (force refresh: $isForceRefresh)")
             val result = repository.fetchAndCacheMap()
 
             if (result.isSuccess) {

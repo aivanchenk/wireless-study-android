@@ -108,7 +108,12 @@ class SignalMapCanvasView @JvmOverloads constructor(
 
         // Request layout to recalculate dimensions
         requestLayout()
-        invalidate()
+
+        // Force invalidate on UI thread to ensure repaint happens
+        post {
+            invalidate()
+            Log.d(TAG, "Canvas invalidated and repaint requested")
+        }
     }
 
     /**

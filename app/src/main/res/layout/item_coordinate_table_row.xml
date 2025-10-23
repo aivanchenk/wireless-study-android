@@ -67,6 +67,19 @@
         android:gravity="center"
         android:paddingHorizontal="4dp" />
 
+    <!-- Source Column - Checkmark for form entries -->
+    <ImageView
+        android:id="@+id/icon_source"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_weight="1.2"
+        android:layout_gravity="center_vertical"
+        android:src="@android:drawable/checkbox_on_background"
+        android:scaleType="fitCenter"
+        android:contentDescription="Source indicator"
+        android:tint="@color/border_color"
+        android:visibility="gone" />
+
     <!-- Edit Button Column -->
     <ImageButton
         android:id="@+id/button_edit"

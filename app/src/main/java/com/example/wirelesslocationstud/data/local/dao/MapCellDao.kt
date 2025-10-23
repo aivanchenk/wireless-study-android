@@ -23,4 +23,7 @@ interface MapCellDao {
 
     @Query("DELETE FROM map_cells WHERE x = :x")
     suspend fun deleteColumn(x: Int)
+
+    @Query("DELETE FROM map_cells WHERE x = :x AND y = :y")
+    suspend fun deleteCell(x: Int, y: Int)
 }

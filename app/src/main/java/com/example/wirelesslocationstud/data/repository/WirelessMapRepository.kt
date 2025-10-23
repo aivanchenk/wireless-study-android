@@ -206,4 +206,13 @@ class WirelessMapRepository(
         mapCellDao.clear()
         mapMetadataDao.clear()
     }
+
+    /**
+     * Save a single map cell to the database
+     * Used when adding custom measurements from the form
+     */
+    suspend fun saveMapCell(cell: MapCellEntity) {
+        Log.d(TAG, "Saving custom map cell: (${cell.x}, ${cell.y}) with isCustom=${cell.isCustom}")
+        mapCellDao.upsertCells(listOf(cell))
+    }
 }

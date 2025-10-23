@@ -9,10 +9,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.wirelesslocationstud.data.local.dao.MapCellDao
 import com.example.wirelesslocationstud.data.local.database.WirelessDatabase
 import com.example.wirelesslocationstud.data.local.entity.MapCellEntity
+import com.example.wirelesslocationstud.data.worker.MapSyncScheduler
 import kotlinx.coroutines.launch
 
 class DashboardViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val appContext = application.applicationContext
     private val mapCellDao: MapCellDao = WirelessDatabase.getDatabase(application).mapCellDao()
 
     // Sorting state
@@ -106,15 +108,50 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun deleteCoordinate(cell: MapCellEntity) {
         viewModelScope.launch {
-            // For now, just remove from display (placeholder)
-            // In a real implementation, you'd delete from database
-            android.util.Log.d("DashboardViewModel", "Delete clicked for: x${cell.x} y${cell.y}")
+            mapCellDao.deleteCell(cell.x, cell.y)
+            android.util.Log.d("DashboardViewModel", "Deleted coordinate: x${cell.x} y${cell.y}")
         }
     }
 
     fun editCoordinate(cell: MapCellEntity) {
         // Placeholder for edit functionality
         android.util.Log.d("DashboardViewModel", "Edit clicked for: x${cell.x} y${cell.y}")
+    }
+
+    /**
+     * Save a coordinate to the database. If coordinates with the same x,y exist,
+     * they will be overridden. The isCustom flag is set to true to indicate
+     * this was added from the dashboard screen.
+     */
+    fun saveCoordinate(
+        x: Int,
+        y: Int,
+        strength1: Int?,
+        strength2: Int?,
+        strength3: Int?
+    ) {
+        viewModelScope.launch {
+            val newCell = MapCellEntity(
+                x = x,
+                y = y,
+                strength1 = strength1,
+                strength2 = strength2,
+                strength3 = strength3,
+                lastUpdatedEpochMillis = System.currentTimeMillis(),
+                isCustom = true
+            )
+            // upsertCells will replace existing entries with same x,y (primary keys)
+            mapCellDao.upsertCells(listOf(newCell))
+            android.util.Log.d("DashboardViewModel", "Saved custom coordinate: x$x y$y")
+        }
+    }
+
+    /**
+     * Manually trigger a refresh of map data from the API
+     */
+    fun refreshMapData() {
+        android.util.Log.d("DashboardViewModel", "Manual refresh triggered - scheduling map sync")
+        MapSyncScheduler.forceRefresh(appContext)
     }
 
     enum class SortColumn {

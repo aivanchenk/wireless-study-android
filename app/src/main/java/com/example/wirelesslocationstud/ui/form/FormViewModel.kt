@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class FormViewModel(
     private val repository: WirelessMapRepository
@@ -70,6 +71,26 @@ class FormViewModel(
 
         return ValidationResult.Success
     }
+    /**
+     * Submit a new measurement to the database
+     * This will save the coordinate with isCustom = true to indicate it was added from the form
+     */
+    fun submitMeasurement(x: Int, y: Int, rss1: Int, rss2: Int, rss3: Int) {
+        viewModelScope.launch {
+            val newCell = MapCellEntity(
+                x = x,
+                y = y,
+                strength1 = rss1,
+                strength2 = rss2,
+                strength3 = rss3,
+                lastUpdatedEpochMillis = System.currentTimeMillis(),
+                isCustom = true // Mark as custom since it's from the form
+            )
+            repository.saveMapCell(newCell)
+            android.util.Log.d("FormViewModel", "Saved measurement: ($x, $y) with RSS values ($rss1, $rss2, $rss3)")
+        }
+    }
+
 
     data class CoordinateRanges(
         val minX: Int,

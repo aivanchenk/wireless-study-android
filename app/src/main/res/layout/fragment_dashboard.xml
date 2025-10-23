@@ -170,6 +170,18 @@
                 android:visibility="gone" />
         </LinearLayout>
 
+        <!-- Source Header -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:text="Source"
+            android:textColor="@color/text_color"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingHorizontal="4dp" />
+
         <!-- Edit Header -->
         <TextView
             android:layout_width="0dp"
@@ -213,13 +225,32 @@
         android:id="@+id/text_empty_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No coordinates with signal strength available"
+        android:text="No coordinates with signal strength available\n\nTap here to refresh data from API"
         android:textColor="@color/text_color"
         android:textSize="16sp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:padding="16dp"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- FAB for adding new coordinates -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_coordinate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="Add new coordinate"
+        app:srcCompat="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/tab_color"
+        app:tint="@color/text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

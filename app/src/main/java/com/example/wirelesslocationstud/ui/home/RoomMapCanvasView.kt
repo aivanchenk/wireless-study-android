@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.wirelesslocationstud.R
+import com.example.wirelesslocationstud.data.local.entity.MapCellEntity
 
 /**
  * Canvas view that displays a floor plan with rooms and corridors
@@ -111,16 +112,12 @@ class RoomMapCanvasView @JvmOverloads constructor(
 
         // Bottom row - far right rooms (horizontal layout)
         rooms.add(Room("417", 0.40f, 0.74f, 0.15f, 0.10f, roomColors[0]))
-        rooms.add(Room("418", 0.56f, 0.74f, 0.15f, 0.10f, roomColors[1]))
 
         // Bottom LEFT corridor extension - extends LEFT from the central corridor (below 407)
         rooms.add(Room("CorridorBottomLeft", 0.05f, 0.74f, 0.16f, 0.10f, corridorColor, false))
 
         // Bottom CENTER corridor extension - continues from central corridor (does NOT extend right)
         rooms.add(Room("CorridorBottom", 0.21f, 0.74f, 0.18f, 0.10f, corridorColor, false))
-
-        // Top right corner room (408) - above the corridor
-        rooms.add(Room("408", 0.56f, 0.02f, 0.15f, 0.07f, roomColors[3]))
 
         Log.d(TAG, "Floor plan initialized with ${rooms.size} rooms")
     }
@@ -215,5 +212,25 @@ class RoomMapCanvasView @JvmOverloads constructor(
         }
 
         Log.d(TAG, "Finished drawing ${rooms.size} rooms in ${if (portrait) "portrait" else "landscape"} mode")
+
+    /**
+     * Update the map data (for compatibility with HomeFragment)
+     * This view doesn't use map cell data, but we need the method to avoid errors
+     */
+    fun setMapData(cells: List<MapCellEntity>) {
+        Log.d(TAG, "setMapData called with ${cells.size} cells (RoomMapCanvasView doesn't use this data)")
+        // RoomMapCanvasView shows a static floor plan, so we don't need to do anything here
+        // But we need this method to match the SignalMapCanvasView API
+    }
+
+    /**
+     * Set the target point (for compatibility with HomeFragment)
+     * This view doesn't highlight target points, but we need the method to avoid errors
+     */
+    fun setTargetPoint(point: Pair<Int, Int>?) {
+        Log.d(TAG, "setTargetPoint called with $point (RoomMapCanvasView doesn't use this data)")
+        // RoomMapCanvasView shows a static floor plan, so we don't need to do anything here
+        // But we need this method to match the SignalMapCanvasView API
+    }
     }
 }
