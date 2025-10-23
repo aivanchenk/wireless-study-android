@@ -19,7 +19,13 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.wirelesslocationstud.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:name="com.example.wirelesslocationstud.ui.form.NotificationsFragment"
+        android:label="@string/title_form"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_form"
+        android:name="com.example.wirelesslocationstud.ui.form.FormFragment"
+        android:label="@string/title_form"
+        tools:layout="@layout/fragment_form" />
 </navigation>

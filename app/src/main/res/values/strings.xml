@@ -2,7 +2,7 @@
     <string name="app_name">WirelessLocationStud</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Coordinates</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_form">Form</string>
 
     <!-- Coordinates Table Headers -->
     <string name="header_x">X</string>
