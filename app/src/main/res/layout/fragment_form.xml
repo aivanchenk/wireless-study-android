@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/placeholder_text"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Form Placeholder"
-        android:textSize="18sp" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-</FrameLayout>
+        <!-- Coordinates Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Coordinates (X and Y):"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/input_x"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="X Coordinate"
+            android:inputType="numberSigned"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/input_y"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Y Coordinate"
+            android:inputType="numberSigned"
+            android:layout_marginBottom="16dp" />
+
+        <!-- RSS Values Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter RSS Values for Williboxes 1, 2, and 3 (Positive Integers Only):"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/input_rss1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="RSS Value 1"
+            android:inputType="number"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/input_rss2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="RSS Value 2"
+            android:inputType="number"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/input_rss3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="RSS Value 3"
+            android:inputType="number"
+            android:layout_marginBottom="8dp" />
+
+    </LinearLayout>
+
+</ScrollView>
