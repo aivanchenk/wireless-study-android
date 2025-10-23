@@ -8,6 +8,10 @@ data class MapMetadataEntity(
     @PrimaryKey val id: Int = SINGLETON_ID,
     val width: Int,
     val height: Int,
+    val minX: Int = 0,
+    val maxX: Int = width - 1,
+    val minY: Int = 0,
+    val maxY: Int = height - 1,
     val lastUpdatedEpochMillis: Long
 ) {
     companion object {

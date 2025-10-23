@@ -20,7 +20,7 @@ import com.example.wirelesslocationstud.data.local.entity.UserMeasurementEntity
         MapMetadataEntity::class,
         UserMeasurementEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class WirelessDatabase : RoomDatabase() {
@@ -41,7 +41,9 @@ abstract class WirelessDatabase : RoomDatabase() {
                     context.applicationContext,
                     WirelessDatabase::class.java,
                     DATABASE_NAME
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }

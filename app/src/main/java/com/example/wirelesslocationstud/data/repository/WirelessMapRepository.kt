@@ -124,6 +124,10 @@ class WirelessMapRepository(
             val metadata = MapMetadataEntity(
                 width = mapSize.maxX - mapSize.minX + 1,
                 height = mapSize.maxY - mapSize.minY + 1,
+                minX = mapSize.minX,
+                maxX = mapSize.maxX,
+                minY = mapSize.minY,
+                maxY = mapSize.maxY,
                 lastUpdatedEpochMillis = currentTime
             )
             mapMetadataDao.upsert(metadata)
