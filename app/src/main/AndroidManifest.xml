@@ -19,13 +19,41 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:exported="false"
+            android:label="Home"
+            android:theme="@style/Theme.WirelessLocationStud"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name=".ui.dashboard.DashboardActivity"
+            android:exported="false"
+            android:label="Dashboard"
+            android:theme="@style/Theme.WirelessLocationStud"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name=".ui.form.CreateCoordinateActivity"
+            android:exported="false"
+            android:label="Create Coordinate"
+            android:theme="@style/Theme.WirelessLocationStud"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name=".ui.form.EditCoordinateActivity"
+            android:exported="false"
+            android:label="Edit Coordinate"
+            android:theme="@style/Theme.WirelessLocationStud" />
     </application>
 
 </manifest>

@@ -10,12 +10,18 @@
     <string name="header_strength1">S1</string>
     <string name="header_strength2">S2</string>
     <string name="header_strength3">S3</string>
+    <string name="header_actions">Actions</string>
     <string name="header_edit">Edit</string>
     <string name="header_delete">Delete</string>
 
     <!-- Content descriptions -->
     <string name="edit_coordinate">Edit</string>
     <string name="delete_coordinate">Delete</string>
+    <string name="add_coordinate">Add Coordinate</string>
+    <string name="add_rss_vector">Add RSS Vector</string>
     <string name="sort_ascending">Sort ascending</string>
     <string name="sort_descending">Sort descending</string>
+
+    <!-- Messages -->
+    <string name="empty_state_message">No coordinates found. Tap here to refresh or use the + button to add coordinates.</string>
 </resources>
