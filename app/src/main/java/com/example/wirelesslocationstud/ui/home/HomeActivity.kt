@@ -71,14 +71,14 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         }
-
-        binding.buttonRefresh.setOnClickListener {
-            MapSyncScheduler.forceRefresh(this)
-            Snackbar.make(binding.root, "Refreshing map data...", Snackbar.LENGTH_SHORT).show()
-        }
     }
 
     private fun setupFab() {
+        binding.fabRefresh.setOnClickListener {
+            MapSyncScheduler.forceRefresh(this)
+            Snackbar.make(binding.root, "Refreshing map data...", Snackbar.LENGTH_SHORT).show()
+        }
+
         binding.fabAdd.setOnClickListener {
             val dialog = RssInputDialogFragment()
             dialog.setOnRssSubmittedListener { rssVector ->

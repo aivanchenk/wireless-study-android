@@ -19,6 +19,7 @@
     <string name="delete_coordinate">Delete</string>
     <string name="add_coordinate">Add Coordinate</string>
     <string name="add_rss_vector">Add RSS Vector</string>
+    <string name="refresh_map">Refresh Map</string>
     <string name="sort_ascending">Sort ascending</string>
     <string name="sort_descending">Sort descending</string>
 
