@@ -77,35 +77,45 @@
         android:src="@android:drawable/checkbox_on_background"
         android:scaleType="fitCenter"
         android:contentDescription="Source indicator"
-        android:tint="@color/border_color"
+        app:tint="@color/border_color"
         android:visibility="gone" />
 
     <!-- Edit Button Column -->
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_edit"
         android:layout_width="0dp"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_gravity="center_vertical"
-        android:src="@android:drawable/ic_menu_edit"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/edit_coordinate"
-        android:tint="@color/border_color"
-        android:scaleType="fitCenter"
-        android:padding="4dp" />
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:minWidth="0dp"
+        android:minHeight="32dp"
+        android:padding="4dp"
+        app:icon="@android:drawable/ic_menu_edit"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="@color/border_color"
+        style="@style/Widget.MaterialComponents.Button.TextButton" />
 
     <!-- Delete Button Column -->
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_delete"
         android:layout_width="0dp"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_gravity="center_vertical"
-        android:src="@android:drawable/ic_menu_delete"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/delete_coordinate"
-        android:tint="#D32F2F"
-        android:scaleType="fitCenter"
-        android:padding="4dp" />
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:minWidth="0dp"
+        android:minHeight="32dp"
+        android:padding="4dp"
+        app:icon="@android:drawable/ic_menu_delete"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconTint="#D32F2F"
+        style="@style/Widget.MaterialComponents.Button.TextButton" />
 
 </LinearLayout>

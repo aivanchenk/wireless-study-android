@@ -208,12 +208,15 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_coordinate"
+        android:id="@+id/fab_refresh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:contentDescription="@string/add_coordinate"
-        android:src="@android:drawable/ic_input_add"
+        android:contentDescription="@string/refresh_map"
+        android:src="@android:drawable/ic_popup_sync"
+        app:backgroundTint="@color/tab_color"
+        app:tint="@color/text_color"
+        app:borderWidth="1dp"
         app:layout_constraintBottom_toTopOf="@id/nav_view"
         app:layout_constraintEnd_toEndOf="parent" />
 

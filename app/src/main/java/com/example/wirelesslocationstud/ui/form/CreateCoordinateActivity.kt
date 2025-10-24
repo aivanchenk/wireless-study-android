@@ -38,7 +38,15 @@ class CreateCoordinateActivity : AppCompatActivity() {
 
         setupBottomNavigation()
         setupSubmitButton()
+        setupRefreshButton()
         observeMapMetadata()
+    }
+
+    private fun setupRefreshButton() {
+        binding.fabRefresh.setOnClickListener {
+            viewModel.refreshData()
+            Toast.makeText(this, "Refreshing map data...", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setupBottomNavigation() {

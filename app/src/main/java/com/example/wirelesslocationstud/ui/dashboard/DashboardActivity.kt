@@ -94,8 +94,9 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun setupFab() {
-        binding.fabAddCoordinate.setOnClickListener {
-            launchCreateCoordinateActivity()
+        binding.fabRefresh.setOnClickListener {
+            dashboardViewModel.refreshMapData()
+            Snackbar.make(binding.root, "Refreshing data...", Snackbar.LENGTH_SHORT).show()
         }
     }
 

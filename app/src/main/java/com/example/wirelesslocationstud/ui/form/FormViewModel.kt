@@ -91,6 +91,15 @@ class FormViewModel(
         }
     }
 
+    /**
+     * Trigger a refresh of map data from the API
+     */
+    fun refreshData() {
+        viewModelScope.launch {
+            repository.fetchAndCacheMap()
+            android.util.Log.d("FormViewModel", "Manual refresh triggered")
+        }
+    }
 
     data class CoordinateRanges(
         val minX: Int,
